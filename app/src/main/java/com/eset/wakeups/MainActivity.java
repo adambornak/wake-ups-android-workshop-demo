@@ -1,12 +1,3 @@
-/**
- * @file MainActivity.java
- * @author created by: Stefan Mitrik
- * @author created on: 17. 4. 2015
- * @author \n
- * @author Copyright (c) 2015 ESET, spol. s r. o.
- * @note current owner: Stefan Mitrik (stefan.mitrik@eset.sk)
- * @note IMPORTANT: Before doing any significant change to this file check your plan with the current owner to avoid unexpected behavior.
- */
 package com.eset.wakeups;
 
 import android.app.Activity;
@@ -18,12 +9,49 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends Activity
 {
+    private PersistenceHelper mPersistenceHelper;
+
+    // TODO 7: display total wake ups number
+    
+    private TextView mTotalUpTimeText;
+    private TextView mLongestStreakText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initUiViews();
+
+        mPersistenceHelper = new PersistenceHelper(this);
 
         startService(new Intent(this, DisplayStatsService.class));
+    }
+
+    private void initUiViews()
+    {
+        mTotalUpTimeText = (TextView) findViewById(R.id.wake_up_time_text);
+        mLongestStreakText = (TextView) findViewById(R.id.longest_strike_text);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        refreshStats();
+    }
+
+    private void refreshStats()
+    {
+        mTotalUpTimeText.setText(formatMillisecondsTime(mPersistenceHelper.getTotalUpTime()));
+        mLongestStreakText.setText(formatMillisecondsTime(mPersistenceHelper.getLongestStreak()));
+    }
+
+    private String formatMillisecondsTime(long millis)
+    {
+        return String.format("%02d:%02d:%02d",
+                TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
     }
 }

@@ -5,4 +5,20 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="StatsText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/purple</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="StatsText.Big">
+        <item name="android:textSize">42sp</item>
+    </style>
+
+    <style name="StatsText.Huge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">70sp</item>
+    </style>
+
 </resources>

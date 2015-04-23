@@ -1,13 +1,3 @@
-/**
- * @file DisplayStatsService.java
- * @author created by: Stefan Mitrik
- * @author created on: 17. 4. 2015
- * @author \n
- * @author Copyright (c) 2015 ESET, spol. s r. o.
- * @note current owner: Stefan Mitrik (stefan.mitrik@eset.sk)
- * @note IMPORTANT: Before doing any significant change to this file check your plan with the current owner to avoid unexpected behavior.
- */
-
 package com.eset.wakeups;
 
 import android.app.Service;
@@ -92,7 +82,9 @@ public class DisplayStatsService extends Service
 
     private long getLastWakeUpDuration()
     {
-        // TODO 6: calculated last wake up duration
-        return 0;
+        long lastWakeUp = mPersistenceHelper.getLastWakeUpTime();
+        long now = System.currentTimeMillis();
+
+        return now - lastWakeUp;
     }
 }
