@@ -24,6 +24,6 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO 1: start service
+        startService(new Intent(this, DisplayStatsService.class));
     }
 }
