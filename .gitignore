@@ -1,0 +1,14 @@
+bin/
+build/
+gen/
+classes/
+.settings/
+templates/
+proguard/class_files.txt
+proguard/optimized.jar
+proguard/seeds.txt
+proguard/unoptimized.jar
+proguard/unused.txt
+*.bak
+.sonar/
+.gradle
