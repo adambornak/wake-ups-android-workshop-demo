@@ -1,12 +1,3 @@
-/**
- * @file MainActivity.java
- * @author created by: Stefan Mitrik
- * @author created on: 17. 4. 2015
- * @author \n
- * @author Copyright (c) 2015 ESET, spol. s r. o.
- * @note current owner: Stefan Mitrik (stefan.mitrik@eset.sk)
- * @note IMPORTANT: Before doing any significant change to this file check your plan with the current owner to avoid unexpected behavior.
- */
 package com.eset.wakeups;
 
 import android.app.Activity;
@@ -20,8 +11,7 @@ public class MainActivity extends Activity
 {
     private PersistenceHelper mPersistenceHelper;
 
-    // TODO 7: display total wake ups number
-    
+    private TextView mWakeUpsNumberText;
     private TextView mTotalUpTimeText;
     private TextView mLongestStreakText;
 
@@ -39,6 +29,7 @@ public class MainActivity extends Activity
 
     private void initUiViews()
     {
+        mWakeUpsNumberText = (TextView) findViewById(R.id.wake_ups_number_text);
         mTotalUpTimeText = (TextView) findViewById(R.id.wake_up_time_text);
         mLongestStreakText = (TextView) findViewById(R.id.longest_strike_text);
     }
@@ -52,6 +43,7 @@ public class MainActivity extends Activity
 
     private void refreshStats()
     {
+        mWakeUpsNumberText.setText(String.valueOf(mPersistenceHelper.getWakeUpsNumber()));
         mTotalUpTimeText.setText(formatMillisecondsTime(mPersistenceHelper.getTotalUpTime()));
         mLongestStreakText.setText(formatMillisecondsTime(mPersistenceHelper.getLongestStreak()));
     }
