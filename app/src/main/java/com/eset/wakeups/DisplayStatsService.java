@@ -92,7 +92,9 @@ public class DisplayStatsService extends Service
 
     private long getLastWakeUpDuration()
     {
-        // TODO 6: calculated last wake up duration
-        return 0;
+        long lastWakeUp = mPersistenceHelper.getLastWakeUpTime();
+        long now = System.currentTimeMillis();
+
+        return now - lastWakeUp;
     }
 }
