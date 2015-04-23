@@ -12,3 +12,4 @@ proguard/unused.txt
 *.bak
 .sonar/
 .gradle
+/.idea/workspace.xml
